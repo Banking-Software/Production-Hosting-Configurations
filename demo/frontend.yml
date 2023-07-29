@@ -16,7 +16,7 @@ spec:
         - name: frontend-demo-container
           image: ashish727/microfinancefrontend
           env:
-            - name: REACT_APP_BASEURL
+            - name: REACT_APP_BACKEND_URL
               value: http://backend-demo-service/
           ports:
             - containerPort: 80
