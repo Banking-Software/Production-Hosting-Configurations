@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: frontend-demo-container
-          image: your-frontend-image:latest
+          image: samiramrullah/microfinancefrontend
           env:
             - name: REACT_APP_BASE_URL
               value: "http://backend-demo-service/"
