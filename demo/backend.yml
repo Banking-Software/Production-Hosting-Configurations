@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-demo-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-demo
+  template:
+    metadata:
+      labels:
+        app: backend-demo
+    spec:
+      containers:
+        - name: backend-demo-container
+          image: ashish727/microfinance:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: ConnectionStrings__SuperAdmin
+              value: "Server=database-demo-service,1433;Database=SuperAdmin;User Id=sa;Password=Fintex123;TrustServerCertificate=true;"
+            - name: ConnectionStrings__Users
+              value: "Server=database-demo-service,1433;Database=Users;User Id=sa;Password=Fintex123;TrustServerCertificate=true;"
+            - name: ConnectionStrings__CompanyOperations
+              value: "Server=database-demo-service,1433;Database=CompanyOperations;User Id=sa;Password=Fintex123;TrustServerCertificate=true;"
+            - name: Token__Key
+              value: "aI7eFKA/7QTzR7ot9ze7h7uLITua+NJ+V5QjMlsdF1tYPEi43ehQXyhrdqMhyR3uG7QXKwVxcl/opLhCQBHBlA=="
+            - name: Token__Issuer
+              value: "https://fintex.com.np"
+            - name: Token__SuperIssuer
+              value: "M4sXMqgmVF82owi34kxDw76JBn8ar26FTmxgDi02p5B3PzaL3K5/1KqcW7LRuW6pT7r92iErojKsqP+Q7qDyug=="
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-demo-service
+spec:
+  selector:
+    app: backend-demo
+  ports:
+    - protocol: TCP
+      port: 80
+  type: LoadBalancer
