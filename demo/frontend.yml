@@ -1,33 +1,33 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-demo-deployment
+  name: frontend-app-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontend-demo
+      app: frontend-app
   template:
     metadata:
       labels:
-        app: frontend-demo
+        app: frontend-app
     spec:
       containers:
-        - name: frontend-demo-container
+        - name: frontend-app-container
           image: ashish727/microfinancefrontend
           env:
             - name: REACT_APP_BACKEND_URL
-              value: http://backend-demo-service/
+              value: http://backend-app-service/
           ports:
             - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend-demo-service
+  name: frontend-app-service
 spec:
   selector:
-    app: frontend-demo
+    app: frontend-app
   ports:
     - protocol: TCP
       port: 80

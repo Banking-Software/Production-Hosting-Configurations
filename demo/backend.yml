@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-demo-deployment
+  name: backend-app-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: backend-demo
+      app: backend-app
   template:
     metadata:
       labels:
-        app: backend-demo
+        app: backend-app
     spec:
       containers:
-        - name: backend-demo-container
+        - name: backend-app-container
           image: ashish727/microfinance:latest
           ports:
             - containerPort: 80
           env:
             - name: ConnectionStrings__SuperAdmin
-              value: "Server=database-demo-service,1433;Database=SuperAdmin;User Id=sa;Password=Fintex123;TrustServerCertificate=true;"
+              value: "Server=database-app-service,1433;Database=SuperAdmin;User Id=sa;Password=Fintex123;TrustServerCertificate=true;"
             - name: ConnectionStrings__Users
-              value: "Server=database-demo-service,1433;Database=Users;User Id=sa;Password=Fintex123;TrustServerCertificate=true;"
+              value: "Server=database-app-service,1433;Database=Users;User Id=sa;Password=Fintex123;TrustServerCertificate=true;"
             - name: ConnectionStrings__CompanyOperations
-              value: "Server=database-demo-service,1433;Database=CompanyOperations;User Id=sa;Password=Fintex123;TrustServerCertificate=true;"
+              value: "Server=database-app-service,1433;Database=CompanyOperations;User Id=sa;Password=Fintex123;TrustServerCertificate=true;"
             - name: Token__Key
               value: "aI7eFKA/7QTzR7ot9ze7h7uLITua+NJ+V5QjMlsdF1tYPEi43ehQXyhrdqMhyR3uG7QXKwVxcl/opLhCQBHBlA=="
             - name: Token__Issuer
@@ -34,10 +34,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-demo-service
+  name: backend-app-service
 spec:
   selector:
-    app: backend-demo
+    app: backend-app
   ports:
     - protocol: TCP
       port: 80

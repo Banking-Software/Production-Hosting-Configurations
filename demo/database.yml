@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: database-demo-deployment
+  name: database-app-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: database-demo
+      app: database-app
   template:
     metadata:
       labels:
-        app: database-demo
+        app: database-app
     spec:
       containers:
-        - name: database-demo-container
+        - name: database-app-container
           image: mcr.microsoft.com/mssql/server:2019-latest
           ports:
             - containerPort: 1433
@@ -26,10 +26,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: database-demo-service
+  name: database-app-service
 spec:
   selector:
-    app: database-demo
+    app: database-app
   ports:
     - protocol: TCP
       port: 1433
