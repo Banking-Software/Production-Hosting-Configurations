@@ -15,9 +15,6 @@ spec:
       containers:
         - name: frontend-app-container
           image: ashish727/financefrontend:latest
-          env:
-            - name: REACT_APP_BACKEND_URL
-              value: http://backend-app-service:80
           ports:
             - containerPort: 3000
 ---

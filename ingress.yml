@@ -11,13 +11,6 @@ spec:
     - host: fintex.ktm.yetiappcloud.com
       http:
         paths:
-          - path: /api/?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: backend-app-service
-                port:
-                  number: 80
           - path: /?(.*)
             pathType: Prefix
             backend:
@@ -25,3 +18,8 @@ spec:
                 name: frontend-app-service
                 port:
                   number: 3000
+          - path: /api/?(.*)
+            pathType: Prefix
+            backend:
+              serviceName: backend-app-service
+              servicePort: 80
