@@ -22,6 +22,14 @@ spec:
               value: "Y"
             - name: SA_PASSWORD
               value: "Fintex123"
+          volumneMounts:
+            - name: database-app-storage 
+              mountPath: /var/opt/mssql
+      volumes:
+        - name: database-app-storage
+          persistentVolumeClaim:  
+            claimName: database-app-pvc
+      
 ---
 apiVersion: v1
 kind: Service
@@ -34,3 +42,29 @@ spec:
     - protocol: TCP
       port: 1433
   type: ClusterIP
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: database-app-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+      
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: database-app-external-service
+spec:
+  selector:
+    app: database-app
+  ports:
+    - protocol: TCP
+      port: 1433
+      targetPort: 1433
+  type: NodePort
