@@ -16,7 +16,7 @@ spec:
         - name: backend-app-container
           image: ashish727/financebackend:latest
           ports:
-            - containerPort: 5000
+            - containerPort: 80
           env:
             - name: ConnectionStrings__SuperAdmin
               value: "Server=database-app-service,1433;Database=SuperAdmin;User Id=sa;Password=Fintex123;TrustServerCertificate=true;"
@@ -40,21 +40,8 @@ spec:
     app: backend-app
   ports:
     - protocol: TCP
-      port: 5000
-      targetPort: 5000
+      port: 80
+      targetPort: 80
   type: ClusterIP
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: backend-app-external-service
-spec:
-  selector:
-    app: backend-app
-  ports:
-    - protocol: TCP
-      port: 5000
-      targetPort: 5000
-  type: LoadBalancer
 
