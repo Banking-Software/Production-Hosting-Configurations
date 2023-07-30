@@ -17,7 +17,7 @@ spec:
           image: ashish727/microfinancefrontend
           env:
             - name: REACT_APP_BACKEND_URL
-              value: http://backend-app-service/
+              value: http://backend-app-service:80
           ports:
             - containerPort: 80
 ---
