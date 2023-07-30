@@ -14,9 +14,9 @@ spec:
     spec:
       containers:
         - name: backend-app-container
-          image: ashish727/microfinance:latest
+          image: ashish727/financebackend:latest
           ports:
-            - containerPort: 80
+            - containerPort: 5000
           env:
             - name: ConnectionStrings__SuperAdmin
               value: "Server=database-app-service,1433;Database=SuperAdmin;User Id=sa;Password=Fintex123;TrustServerCertificate=true;"
@@ -40,5 +40,6 @@ spec:
     app: backend-app
   ports:
     - protocol: TCP
-      port: 80
+      port: 5000
+      targetPort: 5000
   type: ClusterIP
