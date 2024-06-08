@@ -1,7 +1,9 @@
-# kubernetes-files
-This Includes all the kubernetes files used for hosting
+# Production Hosting Configuration
 
+# Kubernetes
 
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.44.0/deploy/static/provider/cloud/deploy.yaml
+In K8S folder there are all the required .yaml file for hosting project using kubernetes 
 
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.44.0/deploy/static/provider/cloud/deploy.yaml
+# Ansibel
+
+In Ansibel folder there are all the required configs and .yaml file for hosting project in production using Ansibel.

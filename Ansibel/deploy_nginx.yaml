@@ -1,0 +1,14 @@
+---
+- name: Deploy Nginx Configuration
+  hosts: 192.168.0.1
+  become: yes
+  tasks:
+    - name: Copy nginx.conf file
+      copy:
+        src: nginx.conf
+        dest: /etc/nginx/nginx.conf
+
+    - name: Reload Nginx
+      service:
+        name: nginx
+        state: reloaded

@@ -1,0 +1,16 @@
+---
+- name: Create Data Volumes
+  hosts: 192.168.0.1
+  tasks:
+    - name: Create SQL Server data volume
+      community.docker.docker_volume:
+        name: sql_data
+        state: present
+    - name: Create backend data volume
+      community.docker.docker_volume:
+        name: backend_data
+        state: present
+    - name: Create Log Volume
+      community.docker.docker_volume:
+        name: log_data
+        state: present

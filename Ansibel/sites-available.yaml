@@ -1,0 +1,23 @@
+---
+- name: Configure Nginx
+  hosts: 192.168.0.1
+  become: yes
+  tasks:
+    - name: Copy Nginx configuration file
+      copy:
+        src: sites-available.conf 
+        dest: /etc/nginx/sites-available/client.conf
+      notify: Reload Nginx
+
+    - name: Create symbolic link in sites-enabled
+      file:
+        src: /etc/nginx/sites-available/client.conf
+        dest: /etc/nginx/sites-enabled/client.conf
+        state: link
+      notify: Reload Nginx
+
+  handlers:
+    - name: Reload Nginx
+      service:
+        name: nginx
+        state: reloaded

@@ -19,15 +19,15 @@ spec:
             - containerPort: 80
           env:
             - name: ConnectionStrings__SuperAdmin
-              value: "Server=database-app-service,1433;Database=SuperAdmin;User Id=sa;Password=Fintex123;TrustServerCertificate=true;"
+              value: "Server=database-app-service,1433;Database=SuperAdmin;User Id=sa;Password=banking@123;TrustServerCertificate=true;"
             - name: ConnectionStrings__Users
-              value: "Server=database-app-service,1433;Database=Users;User Id=sa;Password=Fintex123;TrustServerCertificate=true;"
+              value: "Server=database-app-service,1433;Database=Users;User Id=sa;Password=banking@123;TrustServerCertificate=true;"
             - name: ConnectionStrings__CompanyOperations
-              value: "Server=database-app-service,1433;Database=CompanyOperations;User Id=sa;Password=Fintex123;TrustServerCertificate=true;"
+              value: "Server=database-app-service,1433;Database=CompanyOperations;User Id=sa;Password=banking@123;TrustServerCertificate=true;"
             - name: Token__Key
               value: "aI7eFKA/7QTzR7ot9ze7h7uLITua+NJ+V5QjMlsdF1tYPEi43ehQXyhrdqMhyR3uG7QXKwVxcl/opLhCQBHBlA=="
             - name: Token__Issuer
-              value: "https://fintex.com.np"
+              value: "https://dev.banking.com"
             - name: Token__SuperIssuer
               value: "M4sXMqgmVF82owi34kxDw76JBn8ar26FTmxgDi02p5B3PzaL3K5/1KqcW7LRuW6pT7r92iErojKsqP+Q7qDyug=="
 ---

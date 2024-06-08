@@ -1,0 +1,19 @@
+---
+- name: Deploy Containers
+  hosts: 192.168.0.1
+  tasks:
+    - name: Create Database
+      community.docker.docker_container:
+        name: sql_server
+        image: mcr.microsoft.com/mssql/server
+        state: started
+        restart_policy: always
+        env:
+          ACCEPT_EULA: Y
+          MSSQL_SA_PASSWORD: banking@123
+        volumes:
+          - sql_data:/var/opt/mssql
+        ports:
+          - "1433:1433"
+        networks:
+          - name: backend_network

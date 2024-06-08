@@ -1,0 +1,40 @@
+---
+- name: Deploy Containers
+  hosts: 192.168.0.1
+  vars:
+    docker_img: ashish727/financebackend:latest
+    client_name: dev
+    db_name: fintex_dev
+    c_backend: dev_backend
+    backend_port: 5000
+    client_url: https://dev.banking.com/
+    c_network: backend_network
+    c_db: sql_server
+    db_pass: banking@123
+    
+
+  tasks:
+    - name: Pull Latest Backend Image
+      community.docker.docker_image:
+        name: "{{ docker_img }}"
+        source: pull
+
+    - name: "backend for {{ client_name }}"
+      community.docker.docker_container:
+        name: "{{ c_backend }}"
+        image: "{{ docker_img }}"
+        state: started
+        restart_policy: always
+        env:
+          ConnectionStrings__DbConnection: "Server={{ c_db }},1433;Database={{ db_name }};User Id=sa;Password={{ db_pass }};TrustServerCertificate=true;"
+          Token__Key: "aI7eFKA/7QTzR7ot9ze7h7uLITua+NJ+V5QjMlsdF1tYPEi43ehQXyhrdqMhyR3uG7QXKwVxcl/opLhCQBHBlA=="
+          Token__Issuer: "{{ client_url }}"
+          Token__SuperIssuer: "M4sXMqgmVF82owi34kxDw76JBn8ar26FTmxgDi02p5B3PzaL3K5/1KqcW7LRuW6pT7r92iErojKsqP+Q7qDyug=="
+          clientDomain: "{{ client_name }}"
+        volumes:
+          - backend_data:/app/data
+          - log_data:/app/logs
+        ports:
+          - "{{ backend_port }}:80"
+        networks:
+          - name: "{{ c_network }}"
