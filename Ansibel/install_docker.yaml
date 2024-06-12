@@ -1,6 +1,6 @@
 ---
 - name: Install Docker and Dependencies
-  hosts: 192.168.0.1
+  hosts: 134.209.158.129
   become: yes
 
   tasks:
@@ -47,7 +47,7 @@
       when: ansible_os_family == 'Debian'
 
     - name: add userpermissions
-      shell: "usermod -aG docker ubuntu"
+      shell: "usermod -aG docker root"
 
     - name: Install Docker Python SDK using pip
       become_user: ubuntu

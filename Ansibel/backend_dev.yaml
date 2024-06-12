@@ -1,10 +1,10 @@
 ---
 - name: Deploy Containers
-  hosts: 192.168.0.1
+  hosts: 134.209.158.129
   vars:
     docker_img: ashish727/financebackend:latest
     client_name: dev
-    db_name: fintex_dev
+    db_name: sql_server
     c_backend: dev_backend
     backend_port: 5000
     client_url: https://dev.banking.com/

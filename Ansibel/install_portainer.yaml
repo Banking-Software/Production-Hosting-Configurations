@@ -1,6 +1,6 @@
 ---
 - name: Install Portainer
-  hosts: 192.168.0.1
+  hosts: 159.89.173.99
   tasks:
     - name: Deploy Portainer
       community.docker.docker_container:
